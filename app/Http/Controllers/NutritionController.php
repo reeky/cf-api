@@ -24,7 +24,7 @@ class NutritionController extends Controller
     public function nutritions($nut,$phone,$pin)
     {
         $nutrition =  Nutritions::select('*')->where('id',$nut)->get();
-        $nutritionlist =  Nutritionlist::select('*')->where('nutritions_id',$nut)->where('phone',$phone)->where('pin',$pin)->get();
+        $nutritionlist =  Nutritionlist::select('*')->where('nutritions_id',$nut)->where('phone',$phone)->where('pin',$pin)->orderBy('created_at','DESC')->get();
 
         return [$nutrition,$nutritionlist];
     }
@@ -46,5 +46,14 @@ class NutritionController extends Controller
             'phone' => $phone,
             'pin' => $pin,
         ));
+    }
+
+    public function destroy()
+    {
+        $id = Input::get('id');
+        $nutrition = Nutritionlist::find($id);
+        if($nutrition){
+            $nutrition->delete();
+        }
     }
 }

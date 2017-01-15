@@ -20,7 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/nutritions/{nutritionId}/{phone}/{pin}', ['as' => 'nutrition_list', 'uses' => 'NutritionController@nutritions']);
-//Route::post('/nutritions', ['as' => 'nutrition_list_post', 'uses' => 'NutritionController@store']);
+Route::post('/deleteNutrition', ['as' => 'delete_nutrition', 'uses' => 'NutritionController@destroy']);
 //Route::get('/nut', ['as' => 'nutrition_list', 'uses' => 'NutritionController@index'])->middleware('cors');
 
 //Route::group(['middleware' => 'cors'], function() {
